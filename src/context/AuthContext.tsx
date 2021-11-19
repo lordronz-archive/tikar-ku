@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 
 type User = {
-  email: string;
-  name: string;
+  email?: string;
+  name?: string;
 } | null;
 type AuthState = {
   authenticated: boolean;
@@ -14,17 +14,18 @@ type Action =
   | { type: 'LOGIN'; payload: User }
   | { type: 'POPULATE'; payload: User }
   | { type: 'LOGOUT' }
-  | { type: 'STOP_LOADING' };
-type Dispatch = React.Dispatch<Action>;
+  | { type: 'STOP_LOADING' }
+  ;
+type Dispatch = React.Dispatch<Action> | null;
 
 const StateContext = createContext<AuthState>({
   authenticated: false,
   user: null,
   loading: true,
 });
-const DispatchContext = createContext(null);
+const DispatchContext = createContext<Dispatch>(null);
 
-const reducer = (state: AuthState, action: Action) => {
+const reducer = (state: AuthState, action: Action): AuthState => {
   switch (action.type) {
     case 'LOGIN':
       return {
@@ -77,7 +78,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        dispatch({ type: 'LOGIN', payload: user });
+        dispatch({ type: 'LOGIN', payload: res.data.data });
       } catch (err) {
         // eslint-disable-next-line no-console
         console.log(err);
