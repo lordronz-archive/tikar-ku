@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Header from '@/components/layout/Header';
 import MainCarousel from '@/components/MainCarousel';
 import Menu from '@/components/Menu';
+import Showcase from '@/components/Showcase';
 import styles from '@/styles/Home.module.css';
 
 const Home: NextPage = () => {
@@ -20,6 +21,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <MainCarousel />
         <Menu />
+        <Showcase />
       </main>
 
       {/* <footer className={styles.footer}>

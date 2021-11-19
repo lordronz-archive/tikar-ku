@@ -32,7 +32,7 @@ const items = [
 
 const MainCarousel = () => {
   return (
-    <Carousel className='w-full'>
+    <Carousel className='w-full' ariaLabel='Showcase'>
       {
         items.map( (item, i) => <CarouselItem key={i} src={item.src} alt={item.alt} /> )
       }
