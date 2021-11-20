@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <main className={styles.main}>
+      <main className={`${styles.main} py-8 px-0 md:px-48`}>
         <MainCarousel />
         <Menu />
         <Showcase />

@@ -8,7 +8,7 @@ import resell from '../../public/resell.png';
 
 const Card = ({ src, alt }: { src: StaticImageData, alt: string }) => {
   return (
-    <div className='flex flex-col items-center justify-center w-60 h-60 border rounded-xl border-vblack border-b-2 border-r-2 border-l-2 border-t-0 shadow-lg border-opacity-20 cursor-pointer mb-4'>
+    <div className='flex flex-col items-center justify-center md:w-60 md:h-60 w-24 h-24 border rounded-xl border-vblack border-b-2 border-r-2 border-l-2 border-t-0 shadow-lg border-opacity-20 cursor-pointer mb-4'>
       <div className='flex justify-center items-center p-4'>
         <Image src={src} alt={alt} />
       </div>
