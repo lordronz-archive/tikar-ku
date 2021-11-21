@@ -17,7 +17,7 @@ const Login: NextPage = () => {
 
       <Header />
 
-      <main className="flex flex-initial flex-row justify-center py-8 px-0 md:px-48">
+      <main className="flex flex-initial flex-row justify-between py-8 px-0 md:px-24">
         <Filter />
         <SearchResult />
       </main>
