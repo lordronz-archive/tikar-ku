@@ -14,7 +14,7 @@ const Filter = () => {
   };
 
   return (
-    <div className='p-6 border rounded-xl border-vblack border-b-2 border-r-2 border-l-2 border-t-0 shadow-lg border-opacity-20'>
+    <div className='fixed p-6 border rounded-xl border-vblack border-b-2 border-r-2 border-l-2 border-t-0 shadow-lg border-opacity-20'>
       <div className='flex items-center justify-between mb-2'>
         <Typography variant='h5'>
           <Box fontWeight='fontWeightBold' color='#989898'>

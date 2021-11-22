@@ -8,7 +8,7 @@ import { MdLocationPin } from 'react-icons/md';
 
 const Item = ({ image, alt, liked }: { image: string, alt: string, liked: boolean }) => {
   return (
-    <Card sx={{ display: 'flex', width: '50rem' }}>
+    <Card sx={{ display: 'flex', width: '50rem', mb: 4 }}>
       <CardMedia
         component="img"
         sx={{ width: 200 }}
@@ -16,7 +16,7 @@ const Item = ({ image, alt, liked }: { image: string, alt: string, liked: boolea
         alt={alt}
       />
       <Box sx={{ display: 'flex', alignItems: '', pl: 1, pb: 1, justifyContent: 'space-between', width: '100%' }}>
-        <CardContent sx={{ flex: '1 0 auto' }}>
+        <CardContent sx={{ flex: '0 0 auto' }}>
           <Typography component="div" variant="h6" fontWeight='bold'>
             {alt}
           </Typography>
@@ -27,13 +27,15 @@ const Item = ({ image, alt, liked }: { image: string, alt: string, liked: boolea
             </Typography>
           </div>
         </CardContent>
-        <CardContent sx={{ flex: '1 0 auto', justifyContent: 'center' }}>
-          {
-            liked
-            ? <BsHeartFill size={28} className='text-vgreen' />
-            : <BsHeart size={28} />
-          }
-          Tes
+        <CardContent sx={{ display: 'flex', justifyContent: 'center' }}>
+          <div className='flex flex-col justify-between'>
+            {
+              liked
+              ? <BsHeartFill size={28} className='text-vgreen' />
+              : <BsHeart size={28} />
+            }
+            <div>Tes</div>
+          </div>
         </CardContent>
       </Box>
     </Card>
@@ -41,6 +43,36 @@ const Item = ({ image, alt, liked }: { image: string, alt: string, liked: boolea
 };
 
 const items = [
+  {
+    image: '/search-1.png',
+    alt: 'Akang Group',
+    liked: true,
+  },
+  {
+    image: '/search-2.png',
+    alt: 'Janji Jiwa',
+    liked: false,
+  },
+  {
+    image: '/search-1.png',
+    alt: 'Akang Group',
+    liked: true,
+  },
+  {
+    image: '/search-2.png',
+    alt: 'Janji Jiwa',
+    liked: false,
+  },
+  {
+    image: '/search-1.png',
+    alt: 'Akang Group',
+    liked: true,
+  },
+  {
+    image: '/search-2.png',
+    alt: 'Janji Jiwa',
+    liked: false,
+  },
   {
     image: '/search-1.png',
     alt: 'Akang Group',
