@@ -3,19 +3,22 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { BsHeart, BsHeartFill } from 'react-icons/bs';
+import { useState } from 'react';
+import { BsHeart, BsHeartFill, BsStarFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
 
-const Item = ({ image, alt, liked }: { image: string, alt: string, liked: boolean }) => {
+const Item = ({ image, alt, liked, rating, slot, price }: { image: string, alt: string, liked: boolean, rating: string, slot: number, price: string }) => {
+  const [like, setLike] = useState(liked);
+
   return (
     <Card sx={{ display: 'flex', width: '50rem', mb: 4 }}>
       <CardMedia
         component="img"
-        sx={{ width: 200 }}
+        sx={{ width: 250 }}
         image={image}
         alt={alt}
       />
-      <Box sx={{ display: 'flex', alignItems: '', pl: 1, pb: 1, justifyContent: 'space-between', width: '100%' }}>
+      <Box sx={{ display: 'flex', alignItems: '', pl: 0, pb: 0, justifyContent: 'space-between', width: '100%' }}>
         <CardContent sx={{ flex: '0 0 auto' }}>
           <Typography component="div" variant="h6" fontWeight='bold'>
             {alt}
@@ -26,15 +29,29 @@ const Item = ({ image, alt, liked }: { image: string, alt: string, liked: boolea
               Jakarta
             </Typography>
           </div>
+          <div className='flex items-center'>
+            <BsStarFill className='text-vyellow' />
+            <Typography component="div">
+              {rating}
+            </Typography>
+          </div>
+          <Typography component="div">
+            {slot} Slot tersisa
+          </Typography>
+          <Typography component="div" className='text-vgreen' fontWeight='bold'>
+            Rp {price}
+          </Typography>
         </CardContent>
-        <CardContent sx={{ display: 'flex', justifyContent: 'center' }}>
-          <div className='flex flex-col justify-between'>
+        <CardContent sx={{ display: 'flex', justifyContent: 'center', p: 1 }}>
+          <div className='flex flex-col justify-between items-end'>
             {
-              liked
-              ? <BsHeartFill size={28} className='text-vgreen' />
-              : <BsHeart size={28} />
+              like
+              ? <BsHeartFill size={28} className='text-vgreen cursor-pointer'  onClick={ () => setLike(!like) }/>
+              : <BsHeart size={28} className='cursor-pointer'  onClick={ () => setLike(!like) }/>
             }
-            <div>Tes</div>
+            <button className='bg-vgreen text-vwhite py-1 px-8 rounded-xl'>
+              Pilih
+            </button>
           </div>
         </CardContent>
       </Box>
@@ -47,41 +64,65 @@ const items = [
     image: '/search-1.png',
     alt: 'Akang Group',
     liked: true,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
   },
   {
     image: '/search-2.png',
     alt: 'Janji Jiwa',
     liked: false,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
   },
   {
     image: '/search-1.png',
     alt: 'Akang Group',
     liked: true,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
   },
   {
     image: '/search-2.png',
     alt: 'Janji Jiwa',
     liked: false,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
   },
   {
     image: '/search-1.png',
     alt: 'Akang Group',
     liked: true,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
   },
   {
     image: '/search-2.png',
     alt: 'Janji Jiwa',
     liked: false,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
   },
   {
     image: '/search-1.png',
     alt: 'Akang Group',
     liked: true,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
   },
   {
     image: '/search-2.png',
     alt: 'Janji Jiwa',
     liked: false,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
   },
 ];
 
@@ -94,8 +135,8 @@ const SearchResult = () => {
         </Box>
       </Typography>
       {
-        items.map(({ image, alt, liked }, i) => (
-          <Item image={image} alt={alt} liked={liked} key={i} />
+        items.map(({ image, alt, liked, rating, slot, price }, i) => (
+          <Item image={image} alt={alt} liked={liked} rating={rating} slot={slot} price={price} key={i} />
         ))
       }
     </div>

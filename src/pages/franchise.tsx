@@ -17,7 +17,7 @@ const Login: NextPage = () => {
 
       <Header />
 
-      <main className="flex justify-between py-8 px-0 md:px-24">
+      <main className="flex justify-between py-8 px-0 md:px-20">
         <div>
           <Filter />
         </div>
