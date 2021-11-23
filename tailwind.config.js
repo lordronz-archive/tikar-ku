@@ -7,6 +7,7 @@ module.exports = {
       'vgreen': '#23bb86',
       'vblack': '#0b132a',
       'vwhite': '#fff',
+      'vyellow': '#ffce31',
     },
     extend: {},
   },
