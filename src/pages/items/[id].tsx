@@ -92,7 +92,7 @@ const ParticularItem = () => {
 
       <Header />
 
-      <main className={`${styles.main} py-8 px-0 md:px-12`}>
+      <main className={`${styles.main} py-8 px-0`}>
         <Item {...items[itemId]} />
       </main>
     </div>
