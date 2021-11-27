@@ -1,0 +1,98 @@
+import { useRouter } from 'next/router';
+
+import Item from '@/components/Item';
+import Header from '@/components/layout/Header';
+import Seo from '@/components/Seo';
+import styles from '@/styles/Home.module.css';
+
+const items = [
+  {
+    image: '/item-1.png',
+    alt: 'Akang Group',
+    liked: true,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
+  },
+  {
+    image: '/item-1.png',
+    alt: 'Janji Jiwa',
+    liked: false,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
+  },
+  {
+    image: '/item-1.png',
+    alt: 'Akang Group',
+    liked: true,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
+  },
+  {
+    image: '/item-1.png',
+    alt: 'Janji Jiwa',
+    liked: false,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
+  },
+  {
+    image: '/item-1.png',
+    alt: 'Akang Group',
+    liked: true,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
+  },
+  {
+    image: '/item-1.png',
+    alt: 'Janji Jiwa',
+    liked: false,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
+  },
+  {
+    image: '/item-1.png',
+    alt: 'Akang Group',
+    liked: true,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
+  },
+  {
+    image: '/item-1.png',
+    alt: 'Janji Jiwa',
+    liked: false,
+    rating: '4.69 (200 Reviews)',
+    slot: 69,
+    price: '69.420.000',
+  },
+];
+
+const ParticularItem = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
+  if (!id) {
+    return <></>;
+  }
+
+  const itemId = parseInt(Array.isArray(id) ? id[0] : id);
+
+  return (
+    <div className={styles.container}>
+      <Seo title='Payment - TikarKU' />
+
+      <Header />
+
+      <main className={`${styles.main} py-8 px-0`}>
+        <Item {...items[itemId]} />
+      </main>
+    </div>
+  );
+};
+
+export default ParticularItem;
