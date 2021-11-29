@@ -3,11 +3,12 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 import { useState } from 'react';
 import { BsHeart, BsHeartFill, BsStarFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
 
-const Item = ({ image, alt, liked, rating, slot, price }: { image: string, alt: string, liked: boolean, rating: string, slot: number, price: string }) => {
+const Item = ({ image, alt, liked, rating, slot, price, id }: { image: string, alt: string, liked: boolean, rating: string, slot: number, price: string, id: number }) => {
   const [like, setLike] = useState(liked);
 
   return (
@@ -50,7 +51,9 @@ const Item = ({ image, alt, liked, rating, slot, price }: { image: string, alt: 
               : <BsHeart size={28} className='cursor-pointer'  onClick={ () => setLike(!like) }/>
             }
             <button className='bg-vgreen text-vwhite py-1 px-8 rounded-xl'>
-              Pilih
+              <Link href={`/payment/${id}`}>
+                <a>Pilih</a>
+              </Link>
             </button>
           </div>
         </CardContent>
@@ -136,7 +139,7 @@ const SearchResult = () => {
       </Typography>
       {
         items.map(({ image, alt, liked, rating, slot, price }, i) => (
-          <Item image={image} alt={alt} liked={liked} rating={rating} slot={slot} price={price} key={i} />
+          <Item image={image} alt={alt} liked={liked} rating={rating} slot={slot} price={price} id={i} key={i} />
         ))
       }
     </div>
