@@ -1,5 +1,6 @@
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 
@@ -206,7 +207,11 @@ const ParticularItem = () => {
         </div>
         <button className='bg-vgreen text-vwhite py-1 rounded-lg w-80 mb-4'>
           <Typography component='h3'>
-            Bayar Sekarang
+            <Link href='/order-success'>
+              <a>
+                Bayar Sekarang
+              </a>
+            </Link>
           </Typography>
         </button>
       </main>

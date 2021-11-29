@@ -11,6 +11,9 @@ module.exports = {
         'vwhite': '#fff',
         'vyellow': '#ffce31',
       },
+      fontFamily: {
+        'display': ['Inter', 'Roboto', 'sans-serif'],
+      },
       maxWidth: {
         '1/4': '25%',
         '1/2': '50%',
