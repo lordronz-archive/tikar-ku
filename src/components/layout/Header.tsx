@@ -26,13 +26,13 @@ const AvatarPopup = ({ name, avatar, signOut }: { name: string | null, avatar: s
 
   return (
     <div className='flex justify-center items-center'>
-      <button onClick={handleClick}>
+      <button onClick={handleClick} className='ml-2'>
         <Avatar
           alt={name || 'User'}
           src={avatar || ''}
         />
       </button>
-      <Typography className='hover:bg-vgreen cursor-pointer'>
+      <Typography className='ml-2'>
         {name}
       </Typography>
       <Popover

@@ -3,11 +3,12 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 import { useState } from 'react';
 import { BsHeart, BsHeartFill, BsStarFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
 
-const Item = ({ image, alt, liked, rating, slot, price }: { image: string, alt: string, liked: boolean, rating: string, slot: number, price: string }) => {
+const Item = ({ image, alt, liked, rating, slot, price, index }: { image: string, alt: string, liked: boolean, rating: string, slot: number, price: string, index: number }) => {
   const [like, setLike] = useState(liked);
 
   return (
@@ -61,7 +62,11 @@ const Item = ({ image, alt, liked, rating, slot, price }: { image: string, alt: 
           <Box sx={{ display: 'flex', alignItems: '', pl: 0, pb: 0, justifyContent: 'space-between', width: '100%' }}>
             <CardContent className='flex justify-between w-full'>
               <button className='bg-vgreen text-vwhite py-1 px-8 rounded-xl'>
-                Beli Sekarang
+                <Link href={`/payment/${index}`}>
+                  <a>
+                    Beli Sekarang
+                  </a>
+                </Link>
               </button>
               <button className='bg-vwhite text-vgreen border border-vgreen py-1 px-8 rounded-xl'>
                 Hubungi Penjual

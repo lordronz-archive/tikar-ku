@@ -51,7 +51,7 @@ const Item = ({ image, alt, liked, rating, slot, price, id }: { image: string, a
               : <BsHeart size={28} className='cursor-pointer'  onClick={ () => setLike(!like) }/>
             }
             <button className='bg-vgreen text-vwhite py-1 px-8 rounded-xl'>
-              <Link href={`/payment/${id}`}>
+              <Link href={`/items/${id}`}>
                 <a>Pilih</a>
               </Link>
             </button>

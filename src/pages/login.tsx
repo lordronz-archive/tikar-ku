@@ -1,6 +1,7 @@
 import Typography from '@mui/material/Typography';
 import type { NextPage } from 'next';
 import {
+  AuthAction,
   useAuthUser,
   withAuthUser,
   withAuthUserTokenSSR,
@@ -66,4 +67,8 @@ const Login: NextPage = () => {
 
 export const getServerSideProps = withAuthUserTokenSSR()();
 
-export default withAuthUser()(Login);
+export default withAuthUser({
+  whenAuthed: AuthAction.REDIRECT_TO_APP,
+  whenUnauthedBeforeInit: AuthAction.RETURN_NULL,
+  whenUnauthedAfterInit: AuthAction.RENDER,
+})(Login);
