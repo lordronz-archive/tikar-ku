@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
+  AuthAction,
   useAuthUser,
   withAuthUser,
   withAuthUserTokenSSR,
@@ -227,4 +228,6 @@ const ParticularItem = () => {
 
 export const getServerSideProps = withAuthUserTokenSSR()();
 
-export default withAuthUser()(ParticularItem);
+export default withAuthUser({
+  whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+})(ParticularItem);
