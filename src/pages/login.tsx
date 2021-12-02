@@ -30,7 +30,7 @@ const Login: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <Seo />
+      <Seo title='Login | TikarKU' />
 
       <Header name={AuthUser.displayName} avatar={AuthUser.photoURL} email={AuthUser.email} signOut={AuthUser.signOut} />
 
@@ -39,25 +39,6 @@ const Login: NextPage = () => {
           <Typography variant='h5' component='div' fontWeight='bold'>
             Sign In
           </Typography>
-          <form onSubmit={handleSubmit(onSubmit)} className='mt-4'>
-            <label className='block mb-2'>Email</label>
-            <input className='block w-full p-1 mb-2 border rounded-md border-vgreen' type='email' {...register('email', { required: true, pattern: emailRegex })} />
-
-            {/* include validation with required or other standard HTML validation rules */}
-            <label className='block mb-2'>Password</label>
-            <input className='block w-full p-1 mb-2 border rounded-md border-vgreen' type='password' {...register('password', { required: true })} />
-
-            <label className='block mb-2'>Confirm Password</label>
-            <input className='block w-full p-1 mb-4 border rounded-md border-vgreen' type='password' {...register('confirmPassword', { required: true, validate: (value) => value === watch('password') })} />
-
-            {/* errors will return when field validation fails  */}
-
-            {errors.email && <span>This email field is required</span>}
-            {errors.password && <span>This field is required</span>}
-            {errors.confirmPassword && <span>This confirmPassword field is required</span>}
-
-            <input className='block bg-vgreen text-vwhite py-1 px-8 rounded-xl' type='submit' value='Sign In' />
-          </form>
           <FirebaseAuth />
         </div>
       </main>
