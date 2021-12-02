@@ -25,7 +25,6 @@ const Home: NextPage = () => {
         <MainCarousel />
         <Menu />
         <Showcase />
-        {AuthUser.photoURL}
       </main>
 
       {/* <footer className={styles.footer}>

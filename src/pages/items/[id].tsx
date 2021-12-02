@@ -97,7 +97,7 @@ const ParticularItem = () => {
       <Header name={AuthUser.displayName} avatar={AuthUser.photoURL} email={AuthUser.email} signOut={AuthUser.signOut} />
 
       <main className={`${styles.main} py-8 px-0`}>
-        <Item {...items[itemId]} />
+        <Item {...items[itemId]} index={itemId} />
       </main>
     </div>
   );
