@@ -1,7 +1,13 @@
 import Typography from '@mui/material/Typography';
 import type { NextPage } from 'next';
+import {
+  useAuthUser,
+  withAuthUser,
+  withAuthUserTokenSSR,
+} from 'next-firebase-auth';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import FirebaseAuth from '@/components/FirebaseAuth';
 import Header from '@/components/layout/Header';
 import Seo from '@/components/Seo';
 import styles from '@/styles/Home.module.css';
@@ -17,6 +23,7 @@ const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@
 const Login: NextPage = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+  const AuthUser = useAuthUser();
 
   console.log(watch('email'));
 
@@ -24,7 +31,7 @@ const Login: NextPage = () => {
     <div className={styles.container}>
       <Seo />
 
-      <Header />
+      <Header name={AuthUser.displayName} avatar={AuthUser.photoURL} email={AuthUser.email} signOut={AuthUser.signOut} />
 
       <main className={`${styles.main} py-8 px-0 md:px-48`}>
         <div className='w-96 p-4 border rounded-xl border-vblack border-b-2 border-r-2 border-l-2 border-t-0 shadow-lg border-opacity-20'>
@@ -50,10 +57,13 @@ const Login: NextPage = () => {
 
             <input className='block bg-vgreen text-vwhite py-1 px-8 rounded-xl' type='submit' value='Sign In' />
           </form>
+          <FirebaseAuth />
         </div>
       </main>
     </div>
   );
 };
 
-export default Login;
+export const getServerSideProps = withAuthUserTokenSSR()();
+
+export default withAuthUser()(Login);

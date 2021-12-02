@@ -2,6 +2,11 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import {
+  useAuthUser,
+  withAuthUser,
+  withAuthUserTokenSSR,
+} from 'next-firebase-auth';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 
 import Header from '@/components/layout/Header';
@@ -180,6 +185,7 @@ const PaymentDetails = () => {
 const ParticularItem = () => {
   const router = useRouter();
   const { id } = router.query;
+  const AuthUser = useAuthUser();
 
   if (!id) {
     return <></>;
@@ -191,7 +197,7 @@ const ParticularItem = () => {
     <div className={styles.container}>
       <Seo title='Payment - TikarKU' />
 
-      <Header />
+      <Header name={AuthUser.displayName} avatar={AuthUser.photoURL} email={AuthUser.email} signOut={AuthUser.signOut} />
 
       <main className='flex flex-col items-center'>
         <PaymentMethod />
@@ -219,4 +225,6 @@ const ParticularItem = () => {
   );
 };
 
-export default ParticularItem;
+export const getServerSideProps = withAuthUserTokenSSR()();
+
+export default withAuthUser()(ParticularItem);
