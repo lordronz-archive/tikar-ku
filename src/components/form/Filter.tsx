@@ -1,16 +1,70 @@
+import AutoComplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 
-const Filter = () => {
-  const [harga, setHarga] = useState('');
+const locations = [
+  {
+    label: 'Jakarta',
+  },
+  {
+    label: 'Surabaya',
+  },
+  {
+    label: 'Medan',
+  },
+  {
+    label: 'Bandung',
+  },
+  {
+    label: 'Semarang',
+  },
+  {
+    label: 'Palembang',
+  },
+];
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setHarga(event.target.value);
+const ratingOptions = [
+  {
+    label: '2 Keatas',
+    rating: 2,
+  },
+  {
+    label: '3 Keatas',
+    rating: 3,
+  },
+  {
+    label: '4 Keatas',
+    rating: 4,
+  },
+  {
+    label: '5 Keatas',
+    rating: 5,
+  },
+];
+
+const Filter = () => {
+  const [price, setPrice] = useState('');
+  const [location, setLocation] = useState<{ label: string; } | null>(null);
+  const [rating, setRating] = useState(1);
+
+  const handlePriceChange = (event: SelectChangeEvent) => {
+    setPrice(event.target.value);
+  };
+
+  const handleRatingChange = (event: SelectChangeEvent) => {
+    setRating(parseInt(event.target.value));
+  };
+
+  const reset = () => {
+    setPrice('');
+    setLocation(null);
+    setRating(1);
   };
 
   return (
@@ -23,7 +77,7 @@ const Filter = () => {
         </Typography>
         <Typography>
           <Box fontWeight='fontWeightBold' className='text-vgreen cursor-pointer hover:underline'>
-            reset
+            <span onClick={reset}>reset</span>
           </Box>
         </Typography>
       </div>
@@ -33,36 +87,25 @@ const Filter = () => {
           <Select
             labelId="demo-simple-select-standard-label"
             id="demo-simple-select-standard"
-            value={harga}
-            onChange={handleChange}
+            value={price}
+            onChange={handlePriceChange}
             label="Urutkan Harga"
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={'asc'}>Menaik</MenuItem>
+            <MenuItem value={'desc'}>Menurun</MenuItem>
           </Select>
         </FormControl>
       </div>
       <div>
         <FormControl variant="standard" sx={{ my: 1, minWidth: 180 }}>
-          <InputLabel id="demo-simple-select-standard-label">Lokasi</InputLabel>
-          <Select
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
-            value={harga}
-            onChange={handleChange}
-            label="Lokasi"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
+          <AutoComplete
+            value={location}
+            onChange={(event, newLocation: { label: string; } | null) => {
+              setLocation(newLocation);
+            }}
+            options={locations}
+            renderInput={(params) => <TextField {...params} label='Lokasi' />}
+          />
         </FormControl>
       </div>
       <div>
@@ -71,16 +114,15 @@ const Filter = () => {
           <Select
             labelId="demo-simple-select-standard-label"
             id="demo-simple-select-standard"
-            value={harga}
-            onChange={handleChange}
+            value={`${rating}`}
+            onChange={handleRatingChange}
             label="Rating"
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {
+              ratingOptions.map(({label, rating}, i) => (
+                <MenuItem value={rating} key={i}>{label}</MenuItem>
+              ))
+            }
           </Select>
         </FormControl>
       </div>
