@@ -71,4 +71,13 @@ export const searchResult = [
     slot: 69,
     price: '69.420.000',
   },
+  {
+    image: '/search-4.png',
+    alt: 'Fremilt',
+    liked: false,
+    location: 'Surakarta',
+    rating: '3.4 (13 Reviews)',
+    slot: 21,
+    price: '45.000.000',
+  },
 ];

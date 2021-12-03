@@ -53,7 +53,6 @@ const AvatarPopup = ({ name, avatar, signOut }: { name: string | null, avatar: s
 };
 
 const Header = ({ name, avatar, email, signOut }: { name: string | null, avatar: string | null, email: string | null, signOut: () => Promise<void> }) => {
-  console.log(avatar);
   return (
     <header className='transition-shadow sticky top-0 z-50 bg-vwhite'>
       <nav className='flex items-center justify-center border-b-4 border-vblack border-opacity-30 space-x-4'>
