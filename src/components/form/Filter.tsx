@@ -16,6 +16,12 @@ const locations = [
     label: 'Surabaya',
   },
   {
+    label: 'Yogyakarta',
+  },
+  {
+    label: 'Surakarta',
+  },
+  {
     label: 'Medan',
   },
   {

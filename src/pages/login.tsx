@@ -6,27 +6,22 @@ import {
   withAuthUser,
   withAuthUserTokenSSR,
 } from 'next-firebase-auth';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 import FirebaseAuth from '@/components/FirebaseAuth';
 import Header from '@/components/layout/Header';
 import Seo from '@/components/Seo';
 import styles from '@/styles/Home.module.css';
 
-type Inputs = {
-  email: string,
-  password: string,
-  confirmPassword: string,
-};
+// type Inputs = {
+//   email: string,
+//   password: string,
+//   confirmPassword: string,
+// };
 
-const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const Login: NextPage = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
   const AuthUser = useAuthUser();
-
-  console.log(watch('email'));
 
   return (
     <div className={styles.container}>

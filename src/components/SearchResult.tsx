@@ -8,7 +8,9 @@ import { useState } from 'react';
 import { BsHeart, BsHeartFill, BsStarFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
 
-const Item = ({ image, alt, liked, rating, slot, price, id }: { image: string, alt: string, liked: boolean, rating: string, slot: number, price: string, id: number }) => {
+import { searchResult } from '@/data/data';
+
+const Item = ({ image, alt, liked, rating, slot, price, id, location }: { image: string, alt: string, liked: boolean, rating: string, slot: number, price: string, id: number, location: string }) => {
   const [like, setLike] = useState(liked);
 
   return (
@@ -27,7 +29,7 @@ const Item = ({ image, alt, liked, rating, slot, price, id }: { image: string, a
           <div className='flex items-center'>
             <MdLocationPin />
             <Typography component="div">
-              Jakarta
+              {location}
             </Typography>
           </div>
           <div className='flex items-center'>
@@ -62,72 +64,74 @@ const Item = ({ image, alt, liked, rating, slot, price, id }: { image: string, a
   );
 };
 
-const items = [
-  {
-    image: '/search-1.png',
-    alt: 'Akang Group',
-    liked: true,
-    rating: '4.69 (200 Reviews)',
-    slot: 69,
-    price: '69.420.000',
-  },
-  {
-    image: '/search-2.png',
-    alt: 'Janji Jiwa',
-    liked: false,
-    rating: '4.69 (200 Reviews)',
-    slot: 69,
-    price: '69.420.000',
-  },
-  {
-    image: '/search-1.png',
-    alt: 'Akang Group',
-    liked: true,
-    rating: '4.69 (200 Reviews)',
-    slot: 69,
-    price: '69.420.000',
-  },
-  {
-    image: '/search-2.png',
-    alt: 'Janji Jiwa',
-    liked: false,
-    rating: '4.69 (200 Reviews)',
-    slot: 69,
-    price: '69.420.000',
-  },
-  {
-    image: '/search-1.png',
-    alt: 'Akang Group',
-    liked: true,
-    rating: '4.69 (200 Reviews)',
-    slot: 69,
-    price: '69.420.000',
-  },
-  {
-    image: '/search-2.png',
-    alt: 'Janji Jiwa',
-    liked: false,
-    rating: '4.69 (200 Reviews)',
-    slot: 69,
-    price: '69.420.000',
-  },
-  {
-    image: '/search-1.png',
-    alt: 'Akang Group',
-    liked: true,
-    rating: '4.69 (200 Reviews)',
-    slot: 69,
-    price: '69.420.000',
-  },
-  {
-    image: '/search-2.png',
-    alt: 'Janji Jiwa',
-    liked: false,
-    rating: '4.69 (200 Reviews)',
-    slot: 69,
-    price: '69.420.000',
-  },
-];
+const items = searchResult;
+
+// const items = [
+//   {
+//     image: '/search-1.png',
+//     alt: 'Akang Group',
+//     liked: true,
+//     rating: '4.69 (200 Reviews)',
+//     slot: 69,
+//     price: '69.420.000',
+//   },
+//   {
+//     image: '/search-2.png',
+//     alt: 'Janji Jiwa',
+//     liked: false,
+//     rating: '4.69 (200 Reviews)',
+//     slot: 69,
+//     price: '69.420.000',
+//   },
+//   {
+//     image: '/search-1.png',
+//     alt: 'Akang Group',
+//     liked: true,
+//     rating: '4.69 (200 Reviews)',
+//     slot: 69,
+//     price: '69.420.000',
+//   },
+//   {
+//     image: '/search-2.png',
+//     alt: 'Janji Jiwa',
+//     liked: false,
+//     rating: '4.69 (200 Reviews)',
+//     slot: 69,
+//     price: '69.420.000',
+//   },
+//   {
+//     image: '/search-1.png',
+//     alt: 'Akang Group',
+//     liked: true,
+//     rating: '4.69 (200 Reviews)',
+//     slot: 69,
+//     price: '69.420.000',
+//   },
+//   {
+//     image: '/search-2.png',
+//     alt: 'Janji Jiwa',
+//     liked: false,
+//     rating: '4.69 (200 Reviews)',
+//     slot: 69,
+//     price: '69.420.000',
+//   },
+//   {
+//     image: '/search-1.png',
+//     alt: 'Akang Group',
+//     liked: true,
+//     rating: '4.69 (200 Reviews)',
+//     slot: 69,
+//     price: '69.420.000',
+//   },
+//   {
+//     image: '/search-2.png',
+//     alt: 'Janji Jiwa',
+//     liked: false,
+//     rating: '4.69 (200 Reviews)',
+//     slot: 69,
+//     price: '69.420.000',
+//   },
+// ];
 
 const SearchResult = () => {
   return (
@@ -138,8 +142,8 @@ const SearchResult = () => {
         </Box>
       </Typography>
       {
-        items.map(({ image, alt, liked, rating, slot, price }, i) => (
-          <Item image={image} alt={alt} liked={liked} rating={rating} slot={slot} price={price} id={i} key={i} />
+        items.map(({ image, alt, liked, rating, slot, price, location }, i) => (
+          <Item image={image} alt={alt} liked={liked} rating={rating} slot={slot} price={price} id={i} location={location} key={i} />
         ))
       }
     </div>
