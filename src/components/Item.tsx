@@ -61,14 +61,14 @@ const Item = ({ image, alt, liked, rating, slot, price, index }: { image: string
           </Box>
           <Box sx={{ display: 'flex', alignItems: '', pl: 0, pb: 0, justifyContent: 'space-between', width: '100%' }}>
             <CardContent className='flex justify-between w-full'>
-              <button className='bg-vgreen text-vwhite py-1 px-8 rounded-xl'>
+              <button className='bg-vgreen text-vwhite py-1 px-8 rounded-xl hover:bg-green-600 transition-all duration-300'>
                 <Link href={`/payment/${index}`}>
                   <a>
                     Beli Sekarang
                   </a>
                 </Link>
               </button>
-              <button className='bg-vwhite text-vgreen border border-vgreen py-1 px-8 rounded-xl'>
+              <button className='bg-vwhite text-vgreen border border-vgreen py-1 px-8 rounded-xl hover:bg-gray-200 transition-all duration-300'>
                 Hubungi Penjual
               </button>
             </CardContent>

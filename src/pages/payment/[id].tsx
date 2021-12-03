@@ -8,6 +8,7 @@ import {
   withAuthUser,
   withAuthUserTokenSSR,
 } from 'next-firebase-auth';
+import { ChangeEvent, useState } from 'react';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 
 import Header from '@/components/layout/Header';
@@ -187,12 +188,18 @@ const ParticularItem = () => {
   const router = useRouter();
   const { id } = router.query;
   const AuthUser = useAuthUser();
+  const [agreed, setAgreed] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   if (!id) {
     return <></>;
   }
 
   const itemId = parseInt(Array.isArray(id) ? id[0] : id);
+
+  const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
+    setAgreed(event.target.checked);
+  };
 
   return (
     <div className={styles.container}>
@@ -207,18 +214,37 @@ const ParticularItem = () => {
           <input
             name='isAgreed'
             type='checkbox'
-            className='mr-2' />
+            className='mr-2'
+            onChange={handleChecked} />
           <Typography component='h3' className='text-vblack'>
             Saya telah membaca dan setuju dengan <span className='text-vgreen'>syarat dan ketentuan</span> yang ada
           </Typography>
         </div>
-        <button className='bg-vgreen text-vwhite py-1 rounded-lg w-80 mb-4'>
+        {
+          submitted && !agreed &&
+          (<div className='flex justify-center items-center w-96 mb-4'>
+            <Typography component='h3' className='text-red-500'>
+              Anda harus menyetujui syarat dan ketentuan
+            </Typography>
+          </div>)
+        }
+        <button
+          className='bg-vgreen text-vwhite py-1 rounded-lg w-80 mb-4 hover:bg-green-600 transition-all duration-300'
+          onClick={() => setSubmitted(true)}>
           <Typography component='h3'>
-            <Link href='/order-success'>
-              <a>
+            {
+              agreed
+              ?
+              <Link href='/order-success'>
+                <a>
+                  Bayar Sekarang
+                </a>
+              </Link>
+              :
+              <span>
                 Bayar Sekarang
-              </a>
-            </Link>
+              </span>
+            }
           </Typography>
         </button>
       </main>
