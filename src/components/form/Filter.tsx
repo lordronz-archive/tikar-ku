@@ -6,7 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
+
+import { FilterArgs } from '@/types/filter';
 
 const locations = [
   {
@@ -49,15 +50,12 @@ const ratingOptions = [
     rating: 4,
   },
   {
-    label: '5 Keatas',
+    label: '5',
     rating: 5,
   },
 ];
 
-const Filter = () => {
-  const [price, setPrice] = useState('');
-  const [location, setLocation] = useState<{ label: string; } | null>(null);
-  const [rating, setRating] = useState(1);
+const Filter = ({ price, setPrice, location, setLocation, rating, setRating }: FilterArgs) => {
 
   const handlePriceChange = (event: SelectChangeEvent) => {
     setPrice(event.target.value);

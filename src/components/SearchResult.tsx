@@ -5,10 +5,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { BsHeart, BsHeartFill, BsStarFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
 
 import { searchResult } from '@/data/data';
+import { FilterArgsNoSet } from '@/types/filter';
 
 const Item = ({ image, alt, liked, rating, slot, price, id, location }: { image: string, alt: string, liked: boolean, rating: string, slot: number, price: string, id: number, location: string }) => {
   const [like, setLike] = useState(liked);
@@ -133,7 +135,46 @@ const items = searchResult;
 //   },
 // ];
 
-const SearchResult = () => {
+const SearchResult = ({ price, location, rating }: FilterArgsNoSet) => {
+  const getItems = ({ price, location, rating }: FilterArgsNoSet) => {
+    let localItems = [...items];
+
+    console.log('Hello');
+
+    if (price === 'desc') {
+      localItems.sort((a, b) => {
+        const intA = parseInt(a.price.replace('.', ''));
+        const intB = parseInt(b.price.replace('.', ''));
+        return intB - intA;
+      });
+    } else if (price === 'asc') {
+      localItems.sort((a, b) => {
+        const intA = parseInt(a.price.replace('.', ''));
+        const intB = parseInt(b.price.replace('.', ''));
+        return intA - intB;
+      });
+    }
+
+    if (location) {
+      localItems = localItems.filter((item) => item.location === location.label);
+    }
+
+    if (rating > 1) {
+      localItems = localItems.filter((item) => {
+        const r = Math.floor(parseFloat(item.rating.split(' ')[0]));
+        return r >= rating;
+      });
+    }
+
+    return localItems.map(({ image, alt, liked, rating, slot, price, location }, i) => (
+      <Item image={image} alt={alt} liked={liked} rating={rating} slot={slot} price={price} id={i} location={location} key={i} />
+    ));
+  };
+
+  useEffect(() => {
+    console.log(price, location, rating);
+  }, [price, location, rating]);
+
   return (
     <div>
       <Typography variant='h5'>
@@ -142,9 +183,7 @@ const SearchResult = () => {
         </Box>
       </Typography>
       {
-        items.map(({ image, alt, liked, rating, slot, price, location }, i) => (
-          <Item image={image} alt={alt} liked={liked} rating={rating} slot={slot} price={price} id={i} location={location} key={i} />
-        ))
+        getItems({price, location, rating})
       }
     </div>
   );

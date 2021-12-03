@@ -4,6 +4,7 @@ import {
   withAuthUser,
   withAuthUserTokenSSR,
 } from 'next-firebase-auth';
+import { useState } from 'react';
 
 import Filter from '@/components/form/Filter';
 import Header from '@/components/layout/Header';
@@ -13,6 +14,9 @@ import styles from '@/styles/Home.module.css';
 
 const Franchise: NextPage = () => {
   const AuthUser = useAuthUser();
+  const [price, setPrice] = useState('');
+  const [location, setLocation] = useState<{ label: string; } | null>(null);
+  const [rating, setRating] = useState(1);
 
   return (
     <div className={styles.container}>
@@ -22,9 +26,9 @@ const Franchise: NextPage = () => {
 
       <main className="flex justify-between py-8 px-0 md:px-20">
         <div>
-          <Filter />
+          <Filter price={price} setPrice={setPrice} location={location} setLocation={setLocation} rating={rating} setRating={setRating} />
         </div>
-        <SearchResult />
+        <SearchResult price={price} location={location} rating={rating} />
       </main>
     </div>
   );
