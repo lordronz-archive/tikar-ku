@@ -5,7 +5,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { BsHeart, BsHeartFill, BsStarFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
 
@@ -54,7 +53,7 @@ const Item = ({ image, alt, liked, rating, slot, price, id, location }: { image:
               ? <BsHeartFill size={28} className='text-vgreen cursor-pointer'  onClick={ () => setLike(!like) }/>
               : <BsHeart size={28} className='cursor-pointer'  onClick={ () => setLike(!like) }/>
             }
-            <button className='bg-vgreen text-vwhite py-1 px-8 rounded-xl'>
+            <button className='bg-vgreen text-vwhite py-1 px-8 rounded-xl hover:bg-green-600 transition-all duration-300'>
               <Link href={`/items/${id}`}>
                 <a>Pilih</a>
               </Link>
@@ -139,8 +138,6 @@ const SearchResult = ({ price, location, rating }: FilterArgsNoSet) => {
   const getItems = ({ price, location, rating }: FilterArgsNoSet) => {
     let localItems = [...items];
 
-    console.log('Hello');
-
     if (price === 'desc') {
       localItems.sort((a, b) => {
         const intA = parseInt(a.price.replace('.', ''));
@@ -170,10 +167,6 @@ const SearchResult = ({ price, location, rating }: FilterArgsNoSet) => {
       <Item image={image} alt={alt} liked={liked} rating={rating} slot={slot} price={price} id={i} location={location} key={i} />
     ));
   };
-
-  useEffect(() => {
-    console.log(price, location, rating);
-  }, [price, location, rating]);
 
   return (
     <div>
