@@ -13,10 +13,13 @@ const Item = ({ image, alt, liked, rating, slot, price, index }: { image: string
 
   return (
     <div>
-      <Card sx={{ display: 'flex', width: '70rem', mb: 4 }} className='p-3 rounded-xl'>
+      <Card sx={{ display: 'flex', flexDirection: {md: 'row', xs: 'column'}, width: '100%', mb: 4 }} className='p-3 rounded-xl'>
         <CardMedia
           component="img"
-          sx={{ width: 800 }}
+          sx={{ width: {
+            xs: '100%',
+            md: 800,
+          } }}
           image={image}
           alt={alt}
         />
