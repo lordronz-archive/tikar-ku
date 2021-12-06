@@ -195,7 +195,7 @@ const ParticularItem = () => {
     return <></>;
   }
 
-  const itemId = parseInt(Array.isArray(id) ? id[0] : id);
+  // const itemId = parseInt(Array.isArray(id) ? id[0] : id);
 
   const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
     setAgreed(event.target.checked);

@@ -72,7 +72,7 @@ const Filter = ({ price, setPrice, location, setLocation, rating, setRating }: F
   };
 
   return (
-    <div className='fixed p-6 border rounded-xl border-vblack border-b-2 border-r-2 border-l-2 border-t-0 shadow-lg border-opacity-20'>
+    <div className='fixed p-6 border rounded-xl border-vblack border-b-2 border-r-2 border-l-2 border-t-0 shadow-lg border-opacity-20 z-10 bg-vwhite'>
       <div className='flex items-center justify-between mb-2'>
         <Typography variant='h5'>
           <Box fontWeight='fontWeightBold' color='#989898'>
