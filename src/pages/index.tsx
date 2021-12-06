@@ -21,7 +21,7 @@ const Home: NextPage = () => {
 
       <Header name={AuthUser.displayName} avatar={AuthUser.photoURL} email={AuthUser.email} signOut={AuthUser.signOut} />
 
-      <main className={`${styles.main} py-8 px-0 md:px-48`}>
+      <main className={`${styles.main} py-8 px-4 md:px-48`}>
         <MainCarousel />
         <Menu />
         <Showcase />

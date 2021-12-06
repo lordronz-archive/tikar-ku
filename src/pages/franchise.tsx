@@ -24,8 +24,8 @@ const Franchise: NextPage = () => {
 
       <Header name={AuthUser.displayName} avatar={AuthUser.photoURL} email={AuthUser.email} signOut={AuthUser.signOut} />
 
-      <main className="flex justify-between py-8 px-0 md:px-20">
-        <div>
+      <main className="flex justify-between py-8 px-8 md:px-20">
+        <div className='hidden md:block'>
           <Filter price={price} setPrice={setPrice} location={location} setLocation={setLocation} rating={rating} setRating={setRating} />
         </div>
         <SearchResult price={price} location={location} rating={rating} />

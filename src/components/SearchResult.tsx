@@ -15,10 +15,13 @@ const Item = ({ image, alt, liked, rating, slot, price, id, location }: { image:
   const [like, setLike] = useState(liked);
 
   return (
-    <Card sx={{ display: 'flex', width: '50rem', mb: 4 }}>
+    <Card sx={{ display: 'flex', flexDirection: {md: 'row', xs: 'column'} , width: {xs: '100%'}, mb: 4 }}>
       <CardMedia
         component="img"
-        sx={{ width: 250 }}
+        sx={{ width: {
+            xs: '100%',
+            md: 250,
+          } }}
         image={image}
         alt={alt}
       />
